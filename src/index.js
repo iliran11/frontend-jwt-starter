@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import './index.css';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index.js';
-import { Router,Route, hashHistory } from 'react-router';
-console.log(hashHistory);
+import { Router, browserHistory } from 'react-router';
+import routes from './routes.js';
+
 const store = createStore(
   reducers,
   compose(
@@ -18,9 +18,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={hashHistory}>
-      <Route path='/' component={App} />
-    </Router>
+    <Router history={browserHistory} routes={routes} />
   </Provider>,
   document.getElementById('root')
 );
